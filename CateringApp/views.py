@@ -435,25 +435,23 @@ def invoice(request, pid):
 def deleteOrCancelOrder(request, pid):
     order = Order.objects.get(id=pid)
     action = request.GET.get('action')
-    match action:
-        case "cancel":
+    if action:
+        if action ==  "cancel":
             if order.status < 5:
                 order.status = 6
                 messages.success(request, "Order Canceled")
 
-        case "delete":
+        if action ==  "delete":
             if order.active:
                 order.active = False
             else:
                 order.active = True
             messages.success(request, "Order Deleted")
 
-        case "return":
+        if action ==  "return":
             order.status = 7
             messages.success(request, "Return Initiated")
-            
-        case _:
-            pass
+
     order.save()
     if request.user.is_staff:
         if request.GET.get('active'):
