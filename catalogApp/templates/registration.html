@@ -1,0 +1,141 @@
+{% extends 'index.html' %} {% load static %} {% block body %}
+<div class="container my-3">
+  <h4>Catalogue Registration</h4>
+  <div class="contac-bottom">
+    <div class="row justify-content-center">
+      <div class="col-md-12">
+        <div class="">
+          <form action="" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="row form-group">
+              <div class="col-md-6">
+                <label for="">First Name</label>
+                <input
+                  type="text"
+                  name="fname"
+                  class="form-control"
+                  placeholder="First Name"
+                  autofocus="true"
+                />
+              </div>
+              <br />
+              <div class="col-md-6">
+                <label for="">Last Name</label>
+                <input
+                  type="text"
+                  name="lname"
+                  class="form-control"
+                  placeholder="Last Name"
+                />
+              </div>
+              <br />
+
+              <div class="col-md-6">
+                <label for="">Email</label>
+                <input
+                  type="email"
+                  name="email"
+                  class="form-control"
+                  placeholder="Email*"
+                  required
+                />
+              </div>
+              <br />
+              <div class="col-md-6">
+                <label for="">Mobile</label>
+                <input
+                  type="number"
+                  name="mobile"
+                  class="form-control"
+                  placeholder="Mobile"
+                  minlength="10"
+                  maxlength="10"
+                />
+              </div>
+              <br />
+              <div class="col-md-6">
+                <label for="">Company Code</label>
+                <input
+                  type="text"
+                  name="company_code"
+                  class="form-control"
+                  placeholder="Company Code"
+                />
+              </div>
+              <br />
+
+              <div class="col-md-6">
+                <label for="">Work location</label>
+                <input
+                  type="text"
+                  name="work_location"
+                  class="form-control"
+                  placeholder="Work location"
+                />
+              </div>
+              <br />
+
+              <div class="col-md-6">
+                <label for="">Work Desk</label>
+                <input
+                  type="text"
+                  name="work_desk"
+                  class="form-control"
+                  placeholder="Work Desk"
+                />
+              </div>
+              <br />
+
+              <div class="col-md-6">
+                <label for="">Department</label>
+                <input
+                  type="text"
+                  name="department"
+                  class="form-control"
+                  placeholder="Department"
+                />
+              </div>
+              <br />
+
+              <div class="col-md-6">
+                <label>Image</label>
+                <div class="custom-file">
+                  
+                  <input type="file" class="custom-file-input" id="customFile" name="file">
+                  <label class="custom-file-label" for="customFile">Choose file</label>
+                </div>
+              </div>
+
+              
+              <br />
+              <div class="col-md-6">
+                <label for="">Address</label>
+                <textarea
+                  name="address"
+                  class="form-control"
+                  placeholder="Address"
+                ></textarea>
+              </div>
+              <br />
+
+              <div class="col-md-6">
+                <label for="">Office Address</label>
+                <textarea
+                  name="office_address"
+                  class="form-control"
+                  placeholder="Office Address"
+                ></textarea>
+              </div>
+              <br />
+            </div>
+            <button type="submit" class="lab-btn">
+              <span>Signup Now</span>
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% include 'footer.html' %}
+{% endblock %}

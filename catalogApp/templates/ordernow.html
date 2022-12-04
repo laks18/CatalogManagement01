@@ -1,0 +1,83 @@
+{% include 'index.html' %} {% load static %} 
+{% load custom_tags %} 
+{% block body %}
+
+<div class="shop-cart padding-tb">
+    <div class="container">
+        <div class="section-wrapper mb-5">
+            <div class="cart-bottom">
+                <div class="p-4">
+                    <h6>Welcome to Company ! Please Confirm the below details for your device</h6>
+                </div>
+                <div class="shiping-box">
+                    <div class="row">
+                        <div class="col-md-6 col-12">
+                            <div class="calculate-shiping w-100">
+                                <h5>Confirm Your Detail</h5>
+                                <form action="/ordernow/{{product.id}}/" method="post">
+                                    {% csrf_token %}
+                                    <div class="cart-overview">
+                                        <ul>
+                                            <li>
+                                                <span class="pull-left"> Request Number</span>
+                                                <p class="pull-right" id="order-subtotal">{{reqnum}}</p>
+                                            </li>
+                                            <li>
+                                                <span class="pull-left"> Name</span>
+                                                <p class="pull-right" id="order-subtotal">{{request.user.first_name}} {{request.user.last_name}}</p>
+                                            </li>
+                                            <li>
+                                                <span class="pull-left"> Email</span>
+                                                <p class="pull-right">
+                                                {{request.user.username}}    
+                                                </p>
+                                            </li>
+                                            <li>
+                                                <span class="pull-left">  Mobile</span>
+                                                <p class="pull-right" id="order-total">{{request.user.userprofile_set.all.0.mobile}}</p>
+                                            </li>
+                                        </ul>
+                                    </div>
+                           
+                                <input type="hidden" name="total" value="" id="order-total-3">
+                                <button type="submit" class="lab-btn"><span>Request Now</span></button>
+                            </div>
+                        </form>
+                        </div>
+                        <div class="col-md-6 col-12">
+                            <div class="cart-overview">
+                                <h5>Catalogue Detail</h5>
+                                <ul>
+                                    <li>
+                                        <span class="pull-left">Catalogue Name</span>
+                                        <p class="pull-right" id="order-subtotal">{{product.name}}</p>
+                                    </li>
+                                    <li>
+                                        <span class="pull-left">Catalogue Image</span>
+                                        <p class="pull-right">
+                                            <img src="{{product.image.url}}" style="width:100px;height:80px"/></p>
+                                    </li>
+                                    <li>
+                                        <span class="pull-left"> Date</span>
+                                        <p class="pull-right" id="order-total">{{orderdate}}</p>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+
+    function changecountry(){
+        country = document.getElementById('country').value;
+        window.location = "/ordernow/{{product.id}}/?country="+country;
+    }
+</script>
+{% include 'tablecdn.html' %}
+{% include 'footer.html' %}
+{% endblock %}

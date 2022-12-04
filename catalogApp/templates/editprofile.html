@@ -1,0 +1,162 @@
+{% extends 'index.html' %} {% load static %} {% block body %}
+<div class="container-fluid my-3 px-5 py-4" style="border: 1px solid red;width:90%">
+  <h4>Edit Profile</h4>
+  <div class="contac-bottom">
+    <div class="row justify-content-center">
+      <div class="col-md-12">
+        <div class="">
+          <form action="" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="row form-group">
+              <div class="col-md-6">
+                <label for="">First Name</label>
+                <input
+                  type="text"
+                  name="fname"
+                  class="form-control"
+                  placeholder="First Name*"
+                  autofocus="true"
+                  value="{{data.user.first_name}}"
+                />
+              </div>
+              <br />
+              <div class="col-md-6">
+                <label for="">Last Name</label>
+                <input
+                  type="text"
+                  name="lname"
+                  class="form-control"
+                  placeholder="Last Name*"
+                  value="{{data.user.last_name}}"
+                />
+              </div>
+              <br />
+              
+              <div class="col-md-6">
+                <label for="">Email</label>
+                <input
+                  type="email"
+                  name="email"
+                  class="form-control"
+                  placeholder="Email*"
+                  value="{{data.user.username}}"
+                  readonly
+                  required
+                />
+              </div>
+              <br />
+              <div class="col-md-6">
+                <label for="">Mobile</label>
+                <input
+                  type="text"
+                  name="mobile"
+                  class="form-control"
+                  placeholder="Mobile*"
+                  value="{{data.mobile}}"
+                  
+                />
+              </div>
+              <br />
+
+              <div class="col-md-6">
+                <label for="">Company Code</label>
+                <input
+                  type="text"
+                  name="company_code"
+                  class="form-control"
+                  placeholder="Company Code"
+                  value="{{data.company_code}}"
+                />
+              </div>
+              <br />
+
+              <div class="col-md-6">
+                <label for="">Work location</label>
+                <input
+                  type="text"
+                  name="work_location"
+                  class="form-control"
+                  placeholder="Work location"
+                  value="{{data.work_location}}"
+                  minlength="10"
+                  maxlength="10"
+                />
+              </div>
+              <br />
+
+              <div class="col-md-6">
+                <label for="">Work Desk</label>
+                <input
+                  type="text"
+                  name="work_desk"
+                  class="form-control"
+                  placeholder="Work Desk"
+                  value="{{data.work_desk}}"
+                />
+              </div>
+              <br />
+
+              <div class="col-md-6">
+                <label for="">Department</label>
+                <input
+                  type="text"
+                  name="department"
+                  class="form-control"
+                  placeholder="Department"
+                  value="{{data.department}}"
+                />
+              </div>
+              <br />
+
+              <div class="col-md-4">
+                <label>Image</label>
+                <div class="custom-file">
+                  <input
+                    type="file"
+                    class="custom-file-input"
+                    id="customFile"
+                    name="file"
+                  />
+                  <label class="custom-file-label" for="customFile"
+                    >Choose file</label
+                  >
+                </div>
+              </div>
+              <div class="col-md-2">
+                <img src="{% if i.image %}{{data.image.url}}{% endif %}" style="width: 100%" />
+              </div>
+
+              <br />
+              <div class="col-md-6">
+                <label for="">Address</label>
+                <textarea
+                  name="address"
+                  class="form-control"
+                  placeholder="Address"
+                  style="white-space: normal"
+                >{{data.address}}
+                </textarea>
+              </div>
+              <br />
+              <div class="col-md-12">
+                <label for="">Office Address</label>
+                <textarea
+                  name="office_address"
+                  class="form-control"
+                  placeholder="Office Address"
+                >{{data.office_address}}</textarea>
+              </div>
+              <br />
+              <br />
+            </div>
+            <button type="submit" class="lab-btn">
+              <span>Update</span>
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% include 'footer.html' %}
+{% endblock %}

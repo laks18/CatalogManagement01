@@ -1,0 +1,188 @@
+{% include 'adminindex.html' %} {% load static %} {% load custom_tags %}
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+  integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
+  crossorigin="anonymous"
+  referrerpolicy="no-referrer"
+/>
+
+<style>
+  #active {
+    border-radius: 50%;
+  }
+
+  #inactive {
+    border-radius: 50%;
+  }
+  #active:hover {
+    cursor: default !important;
+  }
+  #inactive:hover {
+    cursor: default !important;
+  }
+  img {
+    width: 60px;
+    height: 60px;
+  }
+  .table-responsive {
+    font-size: 11px;
+  }
+  .material-symbols-outlined {
+    font-size: 14px;
+  }
+  td {
+    padding: 0px;
+  }
+</style>
+
+<div class="main-panel">
+  <div class="content-wrapper">
+    <div class="row">
+      <div class="col-lg-12 grid-margin stretch-card">
+        <div class="card">
+          <div class="card-body">
+            {% for i in messages %}
+            <div
+              class="alert alert-success"
+              id="alert"
+              role="alert"
+              style="cursor: pointer; opacity: 0.85"
+            >
+              <button
+                type="button"
+                class="close"
+                data-dismiss="alert"
+                aria-label="Close"
+              >
+                <span aria-hidden="true">&times;</span>
+              </button>
+              <strong>Success!</strong> {{i}}!
+              <div
+                class="progress active"
+                role="progressbar"
+                style="height: 5px"
+              >
+                <div
+                  class="progress-bar bg-success"
+                  id="pb"
+                  style="width: 100%; opacity: 0.5"
+                ></div>
+              </div>
+            </div>
+            {% endfor %}
+            <h4 class="card-title">Request Detail</h4>
+            <p class="card-description">Dashboard <code>request-detail</code></p>
+            <hr />
+            <div class="">
+              <table class="table" style="width: 100%">
+                <tbody>
+                  <tr>
+                    <th colspan="4">
+                      <h3 align="center">Catalogue Details({{order.product.name}})</h3>
+                    </th>
+                  </tr>
+                  <tr>
+                    <th>Catalogue ID</th>
+                    <td>{{order.product.id}}</td>
+                    <th>Catalogue Image</th>
+                    <th><img src="{{order.product.image.url}}" style="width:100px;height:100px"/></th>
+                  </tr>
+                  <tr>
+                    <th>Catalogue Name</th>
+                    <td>{{order.product.name}}</td>
+                    <th>Short description</th>
+                    <td style="white-space: pre-line;width:400px"><p>{{order.product.desc}}</p></td>
+                  </tr>
+                  <tr>
+                    <th colspan="4">
+                      <h3 align="center">Request Detail</h3>
+                    </th>
+                  </tr>
+                  <tr>
+                    <th>Request ID</th>
+                    <td>{{order.orderid}}</td>
+                    <th>Request Date</th>
+                    <th>{{order.created}}</th>
+                  </tr>
+                  <tr>
+                    <th>Remaining Days</th>
+                    <td>{{order.remaining_days}}</td>
+                    <th>Penalty Price</th>
+                    <th>{{order.penalty}}</th>
+                  </tr>
+                  <tr>
+                    <th>Status</th>
+                    <td><a href="/admin-change-status/{{order.id}}" class="btn btn-primary">{{order.get_status_display}}</a></td>
+                    
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    <div>
+</div>   
+</div>
+</div>
+  
+<div class="content-wrapper">
+    <div class="row">
+        <div class="col-lg-12"
+        <center><h2 style="margin-left:2%">Employee Profile</h2></center>
+        </div>
+      <div class="col-lg-12 grid-margin stretch-card">
+        
+        <div class="card">
+          <div class="card-body">
+            
+              <table id="example2" class="table display nowrap" style="width: 100%">
+                <tr style="border-bottom: 1px solid lightgrey">
+                  <th style="float: left;">Name</th>
+                  <td>
+                    {{order.user.user.first_name}}
+                    {{order.user.user.last_name}}
+                  </td>
+                  <th>Email</th>
+                  <td>{{order.user.user.email}}</td>
+                </tr>
+
+                <tr style="border-bottom: 1px solid lightgrey">
+                  <th>Company Code</th>
+                  <td>{{order.user.company_code}}</td>
+                  <th>Office Address</th>
+                  <td>{{order.user.office_address}}</td>
+                </tr>
+
+                <tr style="border-bottom: 1px solid lightgrey">
+                  <th>Work Location</th>
+                  <td>{{order.user.work_location}}</td>
+                  <th>Work Desk</th>
+                  <td>{{order.user.work_desk}}</td>
+                </tr>
+
+                <tr style="border-bottom: 1px solid lightgrey">
+                  <th>Mobile</th>
+                  <td>{{order.user.mobile}}</td>
+                  <th>Address</th>
+                  <td>{{order.user.address}}</td>
+                </tr>
+
+
+                <tr style="border-bottom: 1px solid lightgrey">
+                  <th>Image</th>
+                  <td><img src="{% if order.user.image %}{{order.user.image.url}}{% endif %}" style="width:100px;height:80px"/></td>
+                  <th>Department</th>
+                  <td>{{order.user.department}}</td>
+                </tr>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+</div>
+{% include 'tablecdn.html' %} {% include 'footeradmin.html' %}
